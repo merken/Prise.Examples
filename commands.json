@@ -1,0 +1,64 @@
+{
+  "commands": {
+    "AssemblyDiscovery": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "AssemblyDiscovery",
+      "Arguments": "/c cake"
+    },
+    "AvaloniaAppWithPlugin": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "AvaloniaAppWithPlugin",
+      "Arguments": "/c cake"
+    },
+    "AzureFunctionWithPlugin": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "AzureFunctionWithPlugin",
+      "Arguments": "/c cake"
+    },
+    "ComplexPlugin": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "ComplexPlugin",
+      "Arguments": "/c cake"
+    },
+    "MicroserviceWithPlugins": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "MicroserviceWithPlugins",
+      "Arguments": "/c cake"
+    },
+    "MultiTenantMicroservice": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "MultiTenantMicroservice",
+      "Arguments": "/c cake"
+    },
+    "PluginFromNetwork": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "PluginFromNetwork",
+      "Arguments": "/c cake"
+    },
+    "PluginWithAsyncContract": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "PluginWithAsyncContract",
+      "Arguments": "/c cake"
+    },
+    "PluginWithDependencies": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "PluginWithDependencies",
+      "Arguments": "/c cake"
+    },
+    "PluginWithExternalServices": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "PluginWithExternalServices",
+      "Arguments": "/c cake"
+    },
+    "PluginWithSharedDependencies": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "PluginWithSharedDependencies",
+      "Arguments": "/c cake"
+    },
+    "SimplePlugin": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "SimplePlugin",
+      "Arguments": "/c cake"
+    }
+  }
+}
