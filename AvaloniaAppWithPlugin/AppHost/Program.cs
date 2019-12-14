@@ -32,6 +32,7 @@ namespace AppHost
             services.AddPrise<IAppComponent>(options =>
                options
                     .WithPluginPath(GetRootPath())
+                    .WithHostType<Application>() // Load all Avalonia-related assemblies from the AppHost
                     .WithPluginAssemblyName("Components.dll")
                     .WithResultConverter<AvaloniaPluginResultConverter>()
            );
