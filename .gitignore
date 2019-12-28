@@ -1,6 +1,5 @@
 bin
 obj
-plugins
 publish
 appsettings.Development.json
 .vs

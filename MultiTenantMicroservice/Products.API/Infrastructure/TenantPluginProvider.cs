@@ -27,7 +27,7 @@ namespace Products.API.Infrastructure
         private string GetPluginFromContext()
         {
             if (!this.contextAccessor.HttpContext.Request.Headers["Tenant"].Any())
-                return "SQLPlugin"; //The old plugin is a netcoreapp2.1 plugin, it should work on both MyHost and MyHost2
+                return "SQLPlugin"; //The old plugin is a netcoreapp2.1 plugin, it should work on both netcoreapp2.x and netcoreapp3.0 hosts
 
             var tenant = this.contextAccessor.HttpContext.Request.Headers["Tenant"].First();
             var configPair = this.tenantConfig.Configuration
