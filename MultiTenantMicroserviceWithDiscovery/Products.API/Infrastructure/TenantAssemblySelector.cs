@@ -15,7 +15,7 @@ namespace Products.API.Infrastructure
 
         public TenantAssemblySelector(IHttpContextAccessor contextAccessor, TenantConfig tenantConfig)
         {
-                this.tenantConfig = tenantConfig;
+            this.tenantConfig = tenantConfig;
             this.contextAccessor = contextAccessor;
         }
 
