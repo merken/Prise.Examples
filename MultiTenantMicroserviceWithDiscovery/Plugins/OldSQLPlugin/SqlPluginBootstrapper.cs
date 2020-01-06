@@ -15,7 +15,7 @@ namespace OldSQLPlugin
         {
             var config = services.BuildServiceProvider().GetRequiredService<IConfiguration>();
             var sqlConfig = new SQLPluginConfig();
-            config.Bind("SQLPlugin", sqlConfig);
+            config.Bind("OldSQLPlugin", sqlConfig);
 
             services.AddScoped<DbConnection>((serviceProvider) =>
             {

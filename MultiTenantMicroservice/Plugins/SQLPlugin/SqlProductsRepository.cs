@@ -4,10 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Contract;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Prise.Plugin;
-using SQLPlugin.Configuration;
 
 namespace SQLPlugin
 {
@@ -18,17 +15,6 @@ namespace SQLPlugin
         internal SqlProductsRepository(ProductsDbContext dbContext)
         {
             this.dbContext = dbContext;
-        }
-
-        public SqlProductsRepository(IServiceProvider serviceProvider)
-        {
-            var config = serviceProvider.GetRequiredService<IConfiguration>();
-            var sqlConfig = new SQLPluginConfig();
-            config.Bind("SQLPlugin", sqlConfig);
-            var options = new DbContextOptionsBuilder<ProductsDbContext>()
-                    .UseSqlServer(sqlConfig.ConnectionString)
-                    .Options;
-            this.dbContext = new ProductsDbContext(options);
         }
 
         [PluginFactory]

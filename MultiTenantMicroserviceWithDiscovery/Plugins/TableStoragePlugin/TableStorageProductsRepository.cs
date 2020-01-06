@@ -26,7 +26,31 @@ namespace TableStoragePlugin
             return tableEntities.Select(e => ToProduct(e));
         }
 
+        public async Task<Product> Get(int productId)
+        {
+            await ConnectToTableAsync();
+            var product = await SingleEntityById(productId);
+            return ToProduct(product);
+        }
+
         public async Task<Product> Create(Product product)
+        {
+            await ConnectToTableAsync();
+            var productEntity = new ProductTableEntity
+            {
+                PartitionKey = product.Id.ToString(),
+                RowKey = product.Name,
+                Id = product.Id,
+                Description = product.Description,
+                Name = product.Name,
+                SKU = product.SKU,
+                PriceExlVAT = product.PriceExlVAT,
+                Timestamp = DateTimeOffset.Now
+            };
+            return ToProduct(await InsertOrUpdate(productEntity));
+        }
+
+        public async Task<Product> Update(Product product)
         {
             await ConnectToTableAsync();
             var productEntity = new ProductTableEntity
@@ -50,35 +74,11 @@ namespace TableStoragePlugin
             await Delete(product.PartitionKey, product.RowKey);
         }
 
-        public async Task<Product> Get(int productId)
-        {
-            await ConnectToTableAsync();
-            var product = await SingleEntityById(productId);
-            return ToProduct(product);
-        }
-
         public async new Task<IEnumerable<Product>> Search(string term)
         {
             await ConnectToTableAsync();
             var results = await base.Search(term);
             return results.Select(e => ToProduct(e));
-        }
-
-        public async Task<Product> Update(Product product)
-        {
-            await ConnectToTableAsync();
-            var productEntity = new ProductTableEntity
-            {
-                PartitionKey = product.Id.ToString(),
-                RowKey = product.Name,
-                Id = product.Id,
-                Description = product.Description,
-                Name = product.Name,
-                SKU = product.SKU,
-                PriceExlVAT = product.PriceExlVAT,
-                Timestamp = DateTimeOffset.Now
-            };
-            return ToProduct(await InsertOrUpdate(productEntity));
         }
 
         private async Task<ProductTableEntity> SingleEntityById(int productId)

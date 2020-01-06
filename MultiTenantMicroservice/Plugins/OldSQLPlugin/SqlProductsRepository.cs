@@ -1,10 +1,9 @@
-﻿using Contract;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Contract;
 using Microsoft.EntityFrameworkCore;
 using Prise.Plugin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OldSQLPlugin
 {
