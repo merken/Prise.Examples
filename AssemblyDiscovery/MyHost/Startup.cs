@@ -30,40 +30,9 @@ namespace MyHost
             services.AddHttpClient();
             services.AddHttpContextAccessor(); // Add the IHttpContextAccessor for use in the Tenant Aware middleware
 
-            //AddPriseWithoutAssemblyScanning(services);
             AddPriseWithAssemblyScanning<IProductsReader>(services);
             AddPriseWithAssemblyScanning<IProductsWriter>(services);
             AddPriseWithAssemblyScanning<IProductsDeleter>(services);
-        }
-
-        private void AddPriseWithoutAssemblyScanning(IServiceCollection services)
-        {
-            services.AddPrise<IProductsReader>(options => options
-                .WithDefaultOptions(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.Combine("Plugins", "ProductsReaderPlugin")))
-                .WithPluginAssemblyName("ProductsReaderPlugin.dll")
-                .ConfigureSharedServices(services =>
-                {
-                    services.AddSingleton(Configuration);
-                })
-            );
-
-            services.AddPrise<IProductsWriter>(options => options
-                .WithDefaultOptions(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.Combine("Plugins", "ProductsWriterPlugin")))
-                .WithPluginAssemblyName("ProductsWriterPlugin.dll")
-                .ConfigureSharedServices(services =>
-                {
-                    services.AddSingleton(Configuration);
-                })
-            );
-
-            services.AddPrise<IProductsDeleter>(options => options
-                .WithDefaultOptions(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Path.Combine("Plugins", "ProductsDeleterPlugin")))
-                .WithPluginAssemblyName("ProductsDeleterPlugin.dll")
-                .ConfigureSharedServices(services =>
-                {
-                    services.AddSingleton(Configuration);
-                })
-            );
         }
 
         private void AddPriseWithAssemblyScanning<T>(IServiceCollection services)
@@ -77,6 +46,7 @@ namespace MyHost
                 {
                     services.AddSingleton(Configuration);
                 })
+                .WithAssemblySelector<UseTableStorageAssemblySelector<T>>()
             );
         }
 
