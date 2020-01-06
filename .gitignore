@@ -4,3 +4,5 @@ publish
 appsettings.Development.json
 .vs
 .vscode
+*.user
+*.pubxml
