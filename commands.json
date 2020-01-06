@@ -30,6 +30,11 @@
       "WorkingDirectory": "MultiTenantMicroservice",
       "Arguments": "/c cake"
     },
+    "MultiTenantMicroserviceWithDiscovery": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "MultiTenantMicroserviceWithDiscovery",
+      "Arguments": "/c cake"
+    },
     "PluginFromNetwork": {
       "FileName": "cmd.exe",
       "WorkingDirectory": "PluginFromNetwork",
