@@ -16,7 +16,7 @@
   </ItemGroup>
 
  <ItemGroup>
-    <PackageReference Include="Prise" Version="1.4.3" />
-    <PackageReference Include="Prise.AssemblyScanning.Discovery" Version="1.4.3" />
+    <PackageReference Include="Prise" Version="1.4.5" />
+    <PackageReference Include="Prise.AssemblyScanning.Discovery" Version="1.4.5" />
   </ItemGroup>
 </Project>
