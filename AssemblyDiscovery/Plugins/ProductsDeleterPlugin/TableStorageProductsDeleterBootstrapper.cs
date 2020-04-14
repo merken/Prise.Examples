@@ -10,12 +10,11 @@ namespace ProductsDeleterPlugin
     {
         public IServiceCollection Bootstrap(IServiceCollection services)
         {
-            var config = services.BuildServiceProvider().GetRequiredService<IConfiguration>();
-            var tableStorageConfig = new TableStorageConfig();
-            config.Bind("TableStoragePlugin", tableStorageConfig);
-
-            services.AddScoped<TableStorageConfig>((serviceProvider) =>
+            services.AddScoped<TableStorageConfig>((sp) =>
             {
+                var config = sp.GetService<IConfiguration>() as IConfiguration;
+                var tableStorageConfig = new TableStorageConfig();
+                config.Bind("TableStoragePlugin", tableStorageConfig);
                 return tableStorageConfig;
             });
 

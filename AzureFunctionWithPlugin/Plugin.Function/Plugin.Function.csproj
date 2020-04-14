@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
@@ -22,6 +22,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Prise" Version="1.4.3" />
+    <PackageReference Include="Prise" Version="1.6.0" />
+    <PackageReference Include="Prise.AssemblyScanning.Discovery" Version="1.6.0" />
   </ItemGroup>
 </Project>

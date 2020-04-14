@@ -1,32 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using Contract;
+using ExternalServices;
+using Language.Domain;
+using Microsoft.Extensions.Configuration;
 using Prise.Plugin;
 
-namespace Random.Plugin
+namespace LanguageBased.Plugin
 {
     [Plugin(PluginType = typeof(IHelloPlugin))]
     public class LanguageBasedPlugin : IHelloPlugin
     {
-        private readonly IExternalService externalService;
-        protected LanguageBasedPlugin(IExternalService externalService)
-        {
-            this.externalService = externalService;
-        }
+        [PluginService(ServiceType = typeof(IConfiguration), ProvidedBy = ProvidedBy.Host)]
+        private readonly IConfiguration configuration;
 
-        [PluginFactory]
-        public static LanguageBasedPlugin ThisIsTheFactoryMethod(IServiceProvider serviceProvider) =>
-            new LanguageBasedPlugin(
-                (IExternalService)serviceProvider.GetService(typeof(IExternalService)) // This service is provided by the MyHost application
-            );
+        [PluginService(ServiceType = typeof(IExternalService), ProvidedBy = ProvidedBy.Host, BridgeType = typeof(ExternalServiceBridge))]
+        private readonly IExternalService externalService;
+
+        [PluginService(ServiceType = typeof(IDictionaryService), ProvidedBy = ProvidedBy.Plugin)]
+        private readonly IDictionaryService dictionaryService;
 
         public string SayHello(string input)
         {
-            if (this.externalService == null)
-                throw new Exception("externalService is null");
+            var language = this.externalService.GetExternalObject().Language;
+            var dictionary = dictionaryService.GetLanguageDictionary().Result;
 
-            var language = this.externalService.GetLanguage();
-            var dictionary = GetLanguageDictionary();
+            var languageFromConfig = this.configuration["LanuageOverride"];
+            if (!String.IsNullOrEmpty(languageFromConfig))
+                language = languageFromConfig;
 
             if (dictionary.ContainsKey(language))
                 return $"{dictionary[language]} {input}";
@@ -34,16 +35,19 @@ namespace Random.Plugin
             return $"We could not find a suitable word for language {language}";
         }
 
-        private Dictionary<string, string> GetLanguageDictionary()
+        public async Task<string> SayHelloAsync(string input)
         {
-            return new Dictionary<string, string>(){
-                {"en-US", "Hello"},
-                {"en-GB", "Hello"},
-                {"nl-BE", "Hallo"},
-                {"nl-NL", "Hallo"},
-                {"fr-BE", "Bonjour"},
-                {"fr-FR", "Bonjour"}
-            };
+            var language = (await this.externalService.GetExternalObjectAsync()).Language;
+            var dictionary = await dictionaryService.GetLanguageDictionary();
+
+            var languageFromConfig = this.configuration["LanuageOverride"];
+            if (!String.IsNullOrEmpty(languageFromConfig))
+                language = languageFromConfig;
+
+            if (dictionary.ContainsKey(language))
+                return $"{dictionary[language]} {input}";
+
+            return $"We could not find a suitable word for language {language}";
         }
     }
 }

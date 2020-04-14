@@ -1,0 +1,33 @@
+[
+  {
+    "name": "English",
+    "culture" :  "en-GB",
+    "description": "The English language, used in England and the USA",
+    "dialects": [
+      {
+        "name": "Welsh",
+        "description": "The Welsh language, used in England"
+      },
+      {
+        "name": "Scottish",
+        "description": "The Scottish language, used in England",
+        "dialects": [
+          {
+            "name": "Gealic",
+            "description": "The Gealic language, used in Scotland"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Dutch",
+    "culture": "nl-NL",
+    "description": "The Dutch language, used in the Netherlands and Belgium"
+  },
+  {
+    "name": "French",
+    "culture": "fr-FR",
+    "description": "The French language, used in the France, Luxembourg and Belgium"
+  }
+]

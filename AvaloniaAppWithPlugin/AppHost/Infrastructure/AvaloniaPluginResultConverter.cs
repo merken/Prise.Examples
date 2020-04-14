@@ -1,5 +1,5 @@
+using Prise.Proxy;
 using System;
-using Prise;
 
 namespace AppHost.Infrastructure
 {

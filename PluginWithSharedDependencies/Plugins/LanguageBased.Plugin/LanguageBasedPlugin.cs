@@ -1,27 +1,24 @@
-﻿using System;
-using Contract;
+﻿using Contract;
 using Language.Domain;
 using Prise.Plugin;
+using System;
 
-namespace Random.Plugin
+namespace LanguageBased.Plugin
 {
     [Plugin(PluginType = typeof(IHelloPlugin))]
     public class LanguageBasedPlugin : IHelloPlugin
     {
+        /// <summary>
+        /// This dependency is registered via the PluginBootstrapper
+        /// </summary>
+        [PluginService(ServiceType = typeof(ILanguageService), ProvidedBy = ProvidedBy.Plugin)]
         private readonly ILanguageService languageService;
-        private readonly ISharedLanguageService sharedLanguageService;
-        protected LanguageBasedPlugin(ILanguageService languageService, ISharedLanguageService sharedLanguageService)
-        {
-            this.languageService = languageService;
-            this.sharedLanguageService = sharedLanguageService;
-        }
 
-        [PluginFactory]
-        public static LanguageBasedPlugin ThisIsTheFactoryMethod(IServiceProvider serviceProvider) =>
-            new LanguageBasedPlugin(
-                (ILanguageService)serviceProvider.GetService(typeof(ILanguageService)),
-                (ISharedLanguageService)serviceProvider.GetService(typeof(ISharedLanguageService))
-            );
+        /// <summary>
+        /// This dependency is registered at the MyHost host app
+        /// </summary>
+        [PluginService(ServiceType = typeof(ISharedLanguageService), ProvidedBy = ProvidedBy.Host, BridgeType = typeof(SharedLanguageServiceBridge))]
+        private readonly ISharedLanguageService sharedLanguageService;
 
         public string SayHello(string input)
         {

@@ -56,12 +56,7 @@ namespace MyHost2
                 .LocalOrNetwork<IProductsRepository>(cla.UseNetwork)
 
                 .WithDependencyPathProvider<TenantPluginDependencyPathProvider<IProductsRepository>>()
-                .ConfigureSharedServices(sharedServices =>
-                {
-                        // Add the configuration for use in the plugins
-                        // this way, the plugins can read their own config section from the appsettings.json
-                        sharedServices.AddSingleton(Configuration);
-                })
+                .UseHostServices(services, new[] { typeof(IConfiguration) })
                 .WithHostType<BinderOptions>()
                 .WithSelector<HttpClientPluginSelector<IProductsRepository>>()
                 .WithHostFrameworkProvider<AppHostFrameworkProvider>()

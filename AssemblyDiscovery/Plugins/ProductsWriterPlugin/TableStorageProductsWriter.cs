@@ -1,9 +1,7 @@
-﻿using Contract;
-using Prise.Plugin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
+using Contract;
+using Prise.Plugin;
 using TableStorageConnector;
 
 namespace ProductsWriterPlugin
@@ -24,8 +22,8 @@ namespace ProductsWriterPlugin
         [PluginFactory]
         public static TableStorageProductsWriter ThisIsTheFactoryMethod(IServiceProvider serviceProvider)
         {
-            var config = serviceProvider.GetService(typeof(TableStorageConfig));
-            return new TableStorageProductsWriter(config as TableStorageConfig);
+            var config = serviceProvider.GetService(typeof(TableStorageConfig)) as TableStorageConfig;
+            return new TableStorageProductsWriter(config);
         }
 
         public async Task<Product> Create(Product product)

@@ -1,14 +1,12 @@
-﻿using Microsoft.WindowsAzure.Storage;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Table;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TableStoragePlugin
 {
-    public abstract class TableStorageProviderBase<T> where T : ProductTableEntity, new()
+    public abstract class TableStorageProviderBase<T> where T : TableEntity, new()
     {
         private readonly TableStorageConfig config;
         private CloudTable table;

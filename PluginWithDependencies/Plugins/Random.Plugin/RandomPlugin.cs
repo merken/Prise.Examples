@@ -1,5 +1,4 @@
-﻿using System;
-using Contract;
+﻿using Contract;
 using Prise.Plugin;
 using Random.Domain;
 
@@ -8,15 +7,8 @@ namespace Random.Plugin
     [Plugin(PluginType = typeof(IHelloPlugin))]
     public class RandomPlugin : IHelloPlugin
     {
-        private readonly IRandomService service;
-        protected RandomPlugin(IRandomService service)
-        {
-            this.service = service;
-        }
-
-        [PluginFactory]
-        public static RandomPlugin ThisIsTheFactoryMethod(IServiceProvider serviceProvider) =>
-            new RandomPlugin((IRandomService)serviceProvider.GetService(typeof(IRandomService)));
+        [PluginService(ServiceType = typeof(IRandomService), ProvidedBy = ProvidedBy.Plugin)]
+        private readonly IRandomService service = null;
 
         public string SayHello(string input)
         {

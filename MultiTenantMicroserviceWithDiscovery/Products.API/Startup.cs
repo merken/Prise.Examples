@@ -35,15 +35,14 @@ namespace Products.API
                 .WithDefaultOptions(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins"))
                 .ScanForAssemblies(composer =>
                     composer.UseDiscovery())
-                // UseDiscovery() comes from the Prise.AssemblyScanning.Discovery package and 
-                //  it will scan the Plugins directory recursively for implementations of IProductsRepository.
-                // The TenantAssemblySelector will select which assembly plugin to load.
-                .ConfigureSharedServices(sharedServices =>
-                {
-                    // Add the configuration for use in the plugins
-                    // this way, the plugins can read their own config section from the appsettings.json
-                    sharedServices.AddSingleton(Configuration);
-                })
+               // UseDiscovery() comes from the Prise.AssemblyScanning.Discovery package and 
+               //  it will scan the Plugins directory recursively for implementations of IProductsRepository.
+
+               // Add the configuration for use in the plugins
+               // this way, the plugins can read their own config section from the appsettings.json
+               .UseHostServices(services, new[] { typeof(IConfiguration) })
+
+               // The TenantAssemblySelector will select which assembly plugin to load.
                .WithAssemblySelector<TenantAssemblySelector<IProductsRepository>>()
             );
         }

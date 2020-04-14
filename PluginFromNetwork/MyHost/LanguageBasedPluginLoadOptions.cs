@@ -1,12 +1,12 @@
-using System;
-using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using Prise.Infrastructure;
+using Prise;
+using System;
+using System.Linq;
 
 namespace MyHost
 {
-    public class LanguageBasedPluginLoadOptions<T> : NetworkAssemblyLoaderOptions<T>
+    public class LanguageBasedPluginLoadOptions<T> : DefaultNetworkAssemblyLoaderOptions<T>
     {
         private readonly IHttpContextAccessor contextAccessor;
         private readonly IConfiguration configuration;

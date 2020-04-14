@@ -46,12 +46,9 @@ namespace Products.API
                .WithPluginPathProvider<TenantPluginProvider<IProductsRepository>>()
                .WithDependencyPathProvider<TenantPluginProvider<IProductsRepository>>()
 
-               .ConfigureSharedServices(sharedServices =>
-               {
-                    // Add the configuration for use in the plugins
-                    // this way, the plugins can read their own config section from the appsettings.json
-                    sharedServices.AddSingleton(Configuration);
-               })
+               // Add the configuration for use in the plugins
+               // this way, the plugins can read their own config section from the appsettings.json
+               .UseHostServices(services, new[] { typeof(IConfiguration) })
            );
         }
 

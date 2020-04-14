@@ -27,7 +27,7 @@
           "Contract": "1.0.0",
           "Microsoft.EntityFrameworkCore": "3.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.0.0",
-          "Prise.Plugin": "1.4.2",
+          "Prise.Plugin": "1.6.0",
           "Microsoft.CSharp.Reference": "4.0.0.0",
           "Microsoft.VisualBasic.Core": "10.0.4.0",
           "Microsoft.VisualBasic": "10.0.0.0",
@@ -463,7 +463,7 @@
           "System.Security.Principal.Windows": "4.5.0"
         }
       },
-      "Prise.Plugin/1.4.2": {
+      "Prise.Plugin/1.6.0": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "3.0.0"
         },
@@ -2134,12 +2134,12 @@
       "path": "microsoft.win32.registry/4.5.0",
       "hashPath": "microsoft.win32.registry.4.5.0.nupkg.sha512"
     },
-    "Prise.Plugin/1.4.2": {
+    "Prise.Plugin/1.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Uhbdd/HTbCAsSqhSSLM1cvMS3E244yBSUWv6DR8QT72BzE2HDVII8ejLZ4rBuz1kXB0GtIJ8ZoA5mASVWh+lZA==",
-      "path": "prise.plugin/1.4.2",
-      "hashPath": "prise.plugin.1.4.2.nupkg.sha512"
+      "sha512": "sha512-eowSYP/o3c69vvz+iJZwobgtVHbJ5pxYJjPil0xRq+cep0btt8ou3ASlGOZxU9FBRrRE6mOAewDtbmJedHocMw==",
+      "path": "prise.plugin/1.6.0",
+      "hashPath": "prise.plugin.1.6.0.nupkg.sha512"
     },
     "runtime.native.System/4.3.0": {
       "type": "package",
@@ -2200,7 +2200,7 @@
     "System.Collections.NonGeneric/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
+      "sha512": "sha512-LE/oChpRvkSi3U25u0KnJcI44JeDZ1QJCyN4qFDx2uusEypdqR24w7lKYw21eYe5esuCBuc862wRmpF63Yy1KQ==",
       "path": "system.collections.nongeneric/4.3.0",
       "hashPath": "system.collections.nongeneric.4.3.0.nupkg.sha512"
     },
@@ -2235,7 +2235,7 @@
     "System.ComponentModel.TypeConverter/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-16pQ6P+EdhcXzPiEK4kbA953Fu0MNG2ovxTZU81/qsCd1zPRsKc3uif5NgvllCY598k6bI0KUyKW8fanlfaDQg==",
+      "sha512": "sha512-HZiP0DwTHJ+C+rdFqP47nBYUh5283kcwXIGY2zOVVhsJmVI/2tYiX2zNRdjRQRHsTox58Ydkec6h0pWSh8wAsw==",
       "path": "system.componentmodel.typeconverter/4.3.0",
       "hashPath": "system.componentmodel.typeconverter.4.3.0.nupkg.sha512"
     },

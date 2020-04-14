@@ -1,10 +1,8 @@
-﻿using System;
-using Contract;
+﻿using Language.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using Prise.Plugin;
-using Language.Domain;
 
-namespace Random.Plugin
+namespace LanguageBased.Plugin
 {
     /// <summary>
     /// This bootstrapper will be used in order to load the LanguageBasedPlugin

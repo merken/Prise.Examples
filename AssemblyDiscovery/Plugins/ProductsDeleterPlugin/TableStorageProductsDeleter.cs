@@ -1,9 +1,8 @@
-﻿using Contract;
-using Prise.Plugin;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Contract;
+using Prise.Plugin;
 using TableStorageConnector;
 
 namespace ProductsDeleterPlugin
@@ -24,8 +23,8 @@ namespace ProductsDeleterPlugin
         [PluginFactory]
         public static TableStorageProductsDeleter ThisIsTheFactoryMethod(IServiceProvider serviceProvider)
         {
-            var config = serviceProvider.GetService(typeof(TableStorageConfig));
-            return new TableStorageProductsDeleter(config as TableStorageConfig);
+            var config = serviceProvider.GetService(typeof(TableStorageConfig)) as TableStorageConfig;
+            return new TableStorageProductsDeleter(config);
         }
 
         public async Task Delete(int productId)

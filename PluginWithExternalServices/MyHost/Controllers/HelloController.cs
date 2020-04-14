@@ -26,5 +26,18 @@ namespace MyHost.Controllers
         {
             return _helloPlugin.SayHello(input);
         }
+
+        [HttpGet("async")]
+        public async Task<string> GetAsync([FromQuery]string input)
+        {
+            return  await _helloPlugin.SayHelloAsync(input);
+        }
+
+        [HttpGet("int")]
+        public async Task<string> GetIntAsync([FromQuery]string input)
+        {
+            return "Not implemented";
+            //return (await _helloPlugin.SayHelloIntAsync(0)).ToString();
+        }
     }
 }

@@ -33,7 +33,8 @@
     <ProjectReference Include="..\Contract\Contract.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Prise" Version="1.4.3" />
+    <PackageReference Include="Prise" Version="1.6.0" />
+    <PackageReference Include="Prise.AssemblyScanning.Discovery" Version="1.6.0" />
   </ItemGroup>
 
 </Project>

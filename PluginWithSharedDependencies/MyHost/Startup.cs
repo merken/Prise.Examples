@@ -1,6 +1,7 @@
 using Contract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,15 +24,15 @@ namespace MyHost
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddHttpContextAccessor(); // Required to read out HTTP Headers from request
+            services.AddHttpContextAccessor(); // Required for AcceptHeaderlanguageService
 
             services.AddPrise<IHelloPlugin>(options => options
                 .WithDefaultOptions(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins", "LanguageBased.Plugin"))
                 .WithPluginAssemblyName("LanguageBased.Plugin.dll")
                 .IgnorePlatformInconsistencies() // The plugin is a netstandard library, the host is a netcoreapp, ignore this inconsistency
+                .UseHostServices(services, new[] {typeof(IHttpContextAccessor) }) // Required for AcceptHeaderlanguageService
                 .ConfigureSharedServices(services =>
                 {
-                    services.AddHttpContextAccessor(); // Required to read out HTTP Headers from request
                     services.AddScoped<ISharedLanguageService, AcceptHeaderlanguageService>();
                 })
             );

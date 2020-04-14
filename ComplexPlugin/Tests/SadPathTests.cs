@@ -47,7 +47,7 @@ namespace Tests
         {
             // Arrange, Act
 #if NETCORE3_0
-            await Assert.ThrowsAsync<Prise.PrisePluginException>(async () => await GetRaw(_client, "PluginB", "/disco/description"));
+            await Assert.ThrowsAsync<Prise.Proxy.Exceptions.PriseProxyException>(async () => await GetRaw(_client, "PluginB", "/disco/description"));
 #endif
 #if NETCORE2_1
             await Assert.ThrowsAsync<System.Exception>(async () => await GetRaw(_client, "PluginB", "/disco/description"));

@@ -1,12 +1,13 @@
+using System;
+using System.IO;
 using Contract;
+using ExternalServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Prise;
-using System;
-using System.IO;
 
 namespace MyHost
 {
@@ -30,13 +31,18 @@ namespace MyHost
                 .WithDefaultOptions(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins", "LanguageBased.Plugin"))
                 .WithPluginAssemblyName("LanguageBased.Plugin.dll")
                 .IgnorePlatformInconsistencies() // The plugin is a netstandard library, the host is a netcoreapp, ignore this inconsistency
+                .ConfigureHostServices(hostServices =>
+                {
+                    // These services are registered as host types
+                    // Their types and instances will be loaded from the MyHost
+                    hostServices.AddHttpContextAccessor();
+                    hostServices.AddSingleton<IConfiguration>(Configuration);
+                })
                 .ConfigureSharedServices(sharedServices =>
                 {
-                    var myHostServiceProvider = services.BuildServiceProvider();
-                    var acceptheaderLanguageService = myHostServiceProvider.GetRequiredService<IExternalService>();
-                    // Gets the AcceptHeaderlanguageService and adds it to the ServiceCollection for creating the LanguageBasedPlugin
-                    // This can be added as a Singleton, since the scope is defined by the MyHost, and this is always Scoped.
-                    sharedServices.AddSingleton<IExternalService>(acceptheaderLanguageService);
+                    // The AcceptHeaderlanguageService is known in the MyHost, but the type is registered as a remote type
+                    // This encourages backwards compatability
+                    sharedServices.AddTransient<IExternalService, AcceptHeaderlanguageService>();
                 })
             );
         }

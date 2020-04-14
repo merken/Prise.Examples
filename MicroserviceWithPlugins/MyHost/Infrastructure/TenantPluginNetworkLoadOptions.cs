@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Prise.Infrastructure;
-using Prise;
 
 namespace MyHost.Infrastructure
 {
@@ -13,6 +12,6 @@ namespace MyHost.Infrastructure
         public PluginPlatformVersion PluginPlatformVersion => PluginPlatformVersion.Empty();
         public bool IgnorePlatformInconsistencies => false;
         public NativeDependencyLoadPreference NativeDependencyLoadPreference => NativeDependencyLoadPreference.PreferInstalledRuntime;
-
+        public bool UseCollectibleAssemblies => true;
     }
 }

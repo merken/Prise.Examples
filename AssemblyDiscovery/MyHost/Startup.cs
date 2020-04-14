@@ -42,10 +42,7 @@ namespace MyHost
                 .WithDefaultOptions(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins"))
                 .ScanForAssemblies(composer =>
                     composer.UseDiscovery())
-                .ConfigureSharedServices(services =>
-                {
-                    services.AddSingleton(Configuration);
-                })
+                .UseHostServices(services, new[] { typeof(IConfiguration) }) //  Share 1 Host Service, IConfiguration
                 .WithAssemblySelector<UseTableStorageAssemblySelector<T>>()
             );
         }

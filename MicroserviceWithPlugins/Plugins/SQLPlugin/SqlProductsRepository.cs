@@ -1,42 +1,20 @@
-﻿using System;
+﻿using Contract;
+using Microsoft.EntityFrameworkCore;
+using Prise.Plugin;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Contract;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Prise.Plugin;
-using SQLPlugin.Configuration;
 
 namespace SQLPlugin
 {
     [Plugin(PluginType = typeof(IProductsRepository))]
     public class SqlProductsRepository : IProductsRepository
     {
-        private readonly ProductsDbContext dbContext;
-        internal SqlProductsRepository(ProductsDbContext dbContext)
-        {
-            this.dbContext = dbContext;
-        }
-
-        public SqlProductsRepository(IServiceProvider serviceProvider)
-        {
-            var config = serviceProvider.GetRequiredService<IConfiguration>();
-            var sqlConfig = new SQLPluginConfig();
-            config.Bind("SQLPlugin", sqlConfig);
-            var options = new DbContextOptionsBuilder<ProductsDbContext>()
-                    .UseSqlServer(sqlConfig.ConnectionString)
-                    .Options;
-            this.dbContext = new ProductsDbContext(options);
-        }
-
-        [PluginFactory]
-        public static SqlProductsRepository ThisIsTheFactoryMethod(IServiceProvider serviceProvider)
-        {
-            var service = serviceProvider.GetService(typeof(ProductsDbContext));
-            return new SqlProductsRepository(service as ProductsDbContext);
-        }
+        /// <summary>
+        /// This plugin uses Prise Field Injection in order to get the ProductsDbContext out of the Services registered in the PluginBootstrapper
+        /// </summary>
+        [PluginService(ServiceType = typeof(ProductsDbContext), ProvidedBy = ProvidedBy.Plugin)]
+        private readonly ProductsDbContext dbContext = null;
 
         public async Task<Product> Create(Product product)
         {
