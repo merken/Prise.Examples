@@ -1,5 +1,10 @@
 {
   "commands": {
+    "MVCPlugins": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "MVCPlugins",
+      "Arguments": "/c cake"
+    },
     "AssemblyDiscovery": {
       "FileName": "cmd.exe",
       "WorkingDirectory": "AssemblyDiscovery",
@@ -50,14 +55,14 @@
       "WorkingDirectory": "PluginWithDependencies",
       "Arguments": "/c cake"
     },
-    "PluginWithExternalServices": {
-      "FileName": "cmd.exe",
-      "WorkingDirectory": "PluginWithExternalServices",
-      "Arguments": "/c cake"
-    },
     "PluginWithSharedDependencies": {
       "FileName": "cmd.exe",
       "WorkingDirectory": "PluginWithSharedDependencies",
+      "Arguments": "/c cake"
+    },
+    "PluginWithExternalServices": {
+      "FileName": "cmd.exe",
+      "WorkingDirectory": "PluginWithExternalServices",
       "Arguments": "/c cake"
     },
     "SimplePlugin": {

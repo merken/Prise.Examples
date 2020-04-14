@@ -1,0 +1,40 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "ASP.NET Core MVC application with Prise features as controllers!";
+}
+
+<div class="text-center">
+    <h1 class="display-4">ASP.NET Core 2.1 MVC Plugins using Prise!</h1>
+    <img src="https://github.com/merken/Prise/blob/master/docs/prise.png?raw=true" height="50px" />
+    <div class="display-4" style="font-size:21pt">Not all features are compatible with netcoreapp2.1. Also, assembly scanning in 2.1 is slow.</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Feature Name
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Features)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @if (!item.IsEnabled)
+                        {
+                            <a asp-action="Enable" asp-route-id="@item.Name">Enable</a>
+                        }
+                        else
+                        {
+                            <a asp-action="Disable" asp-route-id="@item.Name">Disable</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
