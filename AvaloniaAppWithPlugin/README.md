@@ -30,3 +30,7 @@ Launch the MyHost application using the `dotnet run` command from inside the App
 
 ### Works on Ubuntu, too!
 ![alt text](avalonia-ubuntu.gif "gif")
+
+### Works on macOs, also!
+![alt text](avalonia-macOs.gif "gif")
+
