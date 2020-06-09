@@ -6,3 +6,5 @@ appsettings.Development.json
 .vscode
 *.user
 *.pubxml
+tools
+.DS_Store
